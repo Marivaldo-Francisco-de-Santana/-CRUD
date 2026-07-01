@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+
+  app:
+    build: .
+    container_name: crud-node
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: crud_db
+    command: sh -c "sleep 20 && npm start"
+
+  db:
+    image: mysql:8
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: crud_db
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "3307:3306"
+
+
+
+

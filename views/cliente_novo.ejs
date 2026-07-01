@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<h2>Novo Cliente</h2>
+
+<form action="/clientes/salvar" method="POST">
+
+    <input type="text" name="nome" placeholder="Nome" required><br><br>
+    <input type="email" name="email" placeholder="Email" required><br><br>
+    <input type="text" name="telefone" placeholder="Telefone"><br><br>
+
+    <input type="text" name="cpf" placeholder="CPF"><br><br>
+    <input type="text" name="cnpj" placeholder="CNPJ"><br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const cpf = document.querySelector('input[name="cpf"]');
+    const cnpj = document.querySelector('input[name="cnpj"]');
+
+    function atualizarCampos() {
+        const cpfPreenchido = cpf.value.trim().length > 0;
+        const cnpjPreenchido = cnpj.value.trim().length > 0;
+
+        if (cpfPreenchido && !cnpjPreenchido) {
+            cnpj.disabled = true;
+        } else {
+            cnpj.disabled = false;
+        }
+
+        if (cnpjPreenchido && !cpfPreenchido) {
+            cpf.disabled = true;
+        } else {
+            cpf.disabled = false;
+        }
+    }
+
+    cpf.addEventListener("input", atualizarCampos);
+    cnpj.addEventListener("input", atualizarCampos);
+
+    atualizarCampos();
+});
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+
+<h2>Editar Cliente</h2>
+
+<form action="/clientes/atualizar/<%= cliente.id %>" method="POST">
+
+    <input type="text" name="nome" value="<%= cliente.nome %>" required><br><br>
+    <input type="email" name="email" value="<%= cliente.email %>" required><br><br>
+    <input type="text" name="telefone" value="<%= cliente.telefone %>"><br><br>
+
+    <input type="text" name="cpf" value="<%= cliente.cpf %>"><br><br>
+    <input type="text" name="cnpj" value="<%= cliente.cnpj %>"><br><br>
+
+    <button type="submit">Atualizar</button>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const cpf = document.querySelector('input[name="cpf"]');
+    const cnpj = document.querySelector('input[name="cnpj"]');
+
+    function atualizarCampos() {
+        if (cpf.value.trim() !== "") {
+            cnpj.disabled = true;
+        } else {
+            cnpj.disabled = false;
+        }
+
+        if (cnpj.value.trim() !== "") {
+            cpf.disabled = true;
+        } else {
+            cpf.disabled = false;
+        }
+    }
+
+    cpf.addEventListener("input", atualizarCampos);
+    cnpj.addEventListener("input", atualizarCampos);
+
+    atualizarCampos();
+});
+</script>
+
+<%- include('partials/footer') %>

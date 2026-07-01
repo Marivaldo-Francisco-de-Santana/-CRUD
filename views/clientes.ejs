@@ -1,0 +1,71 @@
+<%- include('partials/header') %>
+
+<h2>Lista de Clientes</h2>
+
+<a href="/">Home</a> |
+<a href="/clientes/novo">Novo Cliente</a>
+
+<br><br>
+
+<!-- 🔍 CONSULTA DE CLIENTES -->
+<form action="/clientes" method="GET" style="margin-bottom:15px;">
+    <input 
+        type="text"
+        name="nome"
+        placeholder="Pesquisar por nome"
+        value="<%= nome || '' %>">
+
+    <button type="submit">🔍 Consultar</button>
+
+    <a href="/clientes">
+        <button type="button">Limpar</button>
+    </a>
+</form>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>CPF</th>
+            <th>CNPJ</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% if (clientes.length === 0) { %>
+            <tr>
+                <td colspan="7" style="text-align:center;">
+                    Nenhum cliente encontrado
+                </td>
+            </tr>
+        <% } else { %>
+
+            <% clientes.forEach(cliente => { %>
+                <tr>
+                    <td><%= cliente.id %></td>
+                    <td><%= cliente.nome %></td>
+                    <td><%= cliente.email %></td>
+                    <td><%= cliente.telefone || '-' %></td>
+                    <td><%= cliente.cpf || '-' %></td>
+                    <td><%= cliente.cnpj || '-' %></td>
+
+                    <td>
+                        <a href="/clientes/ver/<%= cliente.id %>">Ver</a> | 
+                        <a href="/clientes/editar/<%= cliente.id %>">Editar</a> | 
+                        <a href="/clientes/excluir/<%= cliente.id %>"
+                           onclick="return confirm('Deseja excluir este cliente?')">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+            <% }) %>
+
+        <% } %>
+    </tbody>
+</table>
+
+<%- include('partials/footer') %>

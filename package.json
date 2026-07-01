@@ -1,0 +1,32 @@
+{
+  "name": "crud-nodejs",
+  "version": "1.0.0",
+  "description": "crud-nodejs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com"
+  },
+  "homepage": "https://github.com",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7"
+  }
+}
+
+
+
+
+
